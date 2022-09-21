@@ -1,0 +1,25 @@
+<ng-container *ngTemplateOutlet="treeViewList; context:{$implicit:[tree]}"></ng-container>  
+<ng-template #treeViewList let-children>
+  <ul>
+    <li *ngFor="let node of children;let i = index">
+      <details open>
+        <summary>
+          <label [for]="node.value +'_'+ i">
+            <input
+              [id]="node.value +'_'+ i"
+              type="checkbox"
+              [indeterminate]="node.nodeStatus===INTERMEDIATE"
+              [checked]="node.nodeStatus===SELECTED"
+              #checkLeaf
+              (change)="selectionChanged($event,node)"
+            />
+            <span>{{node.value}}</span>
+          </label>    
+          <span>|{{node.address}}</span>
+          <strong>{{node.selectedChildrenCount}}</strong>
+        </summary>
+        <ng-container *ngTemplateOutlet="treeViewList; context:{$implicit: node.children}"> </ng-container>
+      </details>
+    </li>
+  </ul>
+</ng-template>
