@@ -3,5 +3,136 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "checktree": {
+      "projectType": "library",
+      "root": "projects/checktree",
+      "sourceRoot": "projects/checktree/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/checktree/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/checktree/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/checktree/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/checktree/src/test.ts",
+            "tsConfig": "projects/checktree/tsconfig.spec.json",
+            "karmaConfig": "projects/checktree/karma.conf.js"
+          }
+        }
+      }
+    },
+    "checktreeimpl": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/checktreeimpl",
+      "sourceRoot": "projects/checktreeimpl/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/checktreeimpl",
+            "index": "projects/checktreeimpl/src/index.html",
+            "main": "projects/checktreeimpl/src/main.ts",
+            "polyfills": "projects/checktreeimpl/src/polyfills.ts",
+            "tsConfig": "projects/checktreeimpl/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/checktreeimpl/src/favicon.ico",
+              "projects/checktreeimpl/src/assets"
+            ],
+            "styles": [
+              "projects/checktreeimpl/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/checktreeimpl/src/environments/environment.ts",
+                  "with": "projects/checktreeimpl/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "checktreeimpl:build:production"
+            },
+            "development": {
+              "browserTarget": "checktreeimpl:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "checktreeimpl:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/checktreeimpl/src/test.ts",
+            "polyfills": "projects/checktreeimpl/src/polyfills.ts",
+            "tsConfig": "projects/checktreeimpl/tsconfig.spec.json",
+            "karmaConfig": "projects/checktreeimpl/karma.conf.js",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/checktreeimpl/src/favicon.ico",
+              "projects/checktreeimpl/src/assets"
+            ],
+            "styles": [
+              "projects/checktreeimpl/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
   }
 }
