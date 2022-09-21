@@ -1,23 +1,14 @@
-# Checktree
+# checktree
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.0.
+This component is a simple Angular implementation of Tree for heirarchical/categorical selection similar to [Angular Material Tree](https://material.angular.io/components/tree/examples#tree-checklist) with checkboxes. Please refer to this [implementation](https://github.com/fanatic007/checktree.git) as an example for usage, models or implementation.
 
-## Code scaffolding
+## Development server
 
-Run `ng generate component component-name --project checktree` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project checktree`.
-> Note: Don't forget to add `--project checktree` or else it will be added to the default project in your `angular.json` file. 
+Run `ng serve --open --project=checktreeimpl` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically run with hardcoded dummy data based on this [api](https://www.mocky.io/v2/5cff79fc3200007100eac68f) (not owned by me).
 
 ## Build
 
-Run `ng build checktree` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Publishing
-
-After building your library with `ng build checktree`, go to the dist folder `cd dist/checktree` and run `npm publish`.
-
-## Running unit tests
-
-Run `ng test checktree` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `ng build checktree --configuration=production` to build lib (component) project. The build artifacts will be stored in the `dist/` directory.
 
 ## Further help
 
